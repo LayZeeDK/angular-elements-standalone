@@ -1,7 +1,6 @@
-/*
- * Public API Surface of primer-elements
- */
+// Public API surface of primer-elements
 
-export * from './lib/primer-elements.service';
-export * from './lib/primer-elements.component';
-export * from './lib/primer-elements.module';
+// Button
+export * from './lib/button/primer-button-size';
+export * from './lib/button/primer-button-variant';
+export * from './lib/button/primer-button.element';
