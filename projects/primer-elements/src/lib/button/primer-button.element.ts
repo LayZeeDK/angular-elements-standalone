@@ -6,9 +6,9 @@ import {
 } from '@angular/elements';
 import { createApplication } from '@angular/platform-browser';
 
+// import { provideNoopNgZone } from '../configuration/provide-noop-ng-zone';
 import { PrimerButtonSize } from './primer-button-size';
 import { PrimerButtonVariant } from './primer-button-variant';
-
 import { PrimerButtonComponent } from './primer-button.component';
 
 export interface PrimerButtonElementProperties {
@@ -26,7 +26,11 @@ declare global {
 export const primerButtonTagName = 'primer-button';
 export let PrimerButtonElement: NgElementConstructor<PrimerButtonElementProperties>;
 
-createApplication().then((application) => {
+createApplication({
+  providers: [
+    // provideNoopNgZone(),
+  ],
+}).then((application) => {
   PrimerButtonElement = createCustomElement(PrimerButtonComponent, {
     injector: application.injector,
   });
