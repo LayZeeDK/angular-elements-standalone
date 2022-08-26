@@ -6,5 +6,67 @@
   },
   "newProjectRoot": "projects",
   "projects": {
+    "primer-angular": {
+      "projectType": "library",
+      "root": "projects/primer-angular",
+      "sourceRoot": "projects/primer-angular/src",
+      "prefix": "primer",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/primer-angular/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/primer-angular/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/primer-angular/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/primer-angular/src/test.ts",
+            "tsConfig": "projects/primer-angular/tsconfig.spec.json",
+            "karmaConfig": "projects/primer-angular/karma.conf.js"
+          }
+        }
+      }
+    },
+    "primer-elements": {
+      "projectType": "library",
+      "root": "projects/primer-elements",
+      "sourceRoot": "projects/primer-elements/src",
+      "prefix": "primer",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/primer-elements/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/primer-elements/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/primer-elements/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/primer-elements/src/test.ts",
+            "tsConfig": "projects/primer-elements/tsconfig.spec.json",
+            "karmaConfig": "projects/primer-elements/karma.conf.js"
+          }
+        }
+      }
+    }
   }
 }
