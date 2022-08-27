@@ -24,7 +24,7 @@ type PrimerButtonVariantClass = `btn-${Exclude<
   styles: [
     `
       :host {
-        display: block;
+        display: inline-block;
       }
     `,
   ],
