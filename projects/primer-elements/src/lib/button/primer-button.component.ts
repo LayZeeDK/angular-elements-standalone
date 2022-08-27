@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  HostBinding,
   Input,
   ViewEncapsulation,
 } from '@angular/core';
@@ -29,7 +28,9 @@ type PrimerButtonVariantClass = `btn-${Exclude<
       }
     `,
   ],
-  template: `<button><slot></slot></button>`,
+  template: `<button class="btn" [class]="_modifierClassName">
+    <slot></slot>
+  </button>`,
 })
 export class PrimerButtonComponent {
   get #sizeClass(): PrimerButtonSizeClass | null {
@@ -53,14 +54,9 @@ export class PrimerButtonComponent {
   @Input()
   variant: PrimerButtonVariant = 'default';
 
-  @HostBinding('class.btn')
-  protected get _baseClassAdded(): true {
-    return true;
-  }
-  @HostBinding('className')
-  protected get _className(): string {
+  protected get _modifierClassName(): string {
     return [this.#sizeClass, this.#variantClass]
       .filter((className) => className !== null)
-      .join('');
+      .join(' ');
   }
 }
