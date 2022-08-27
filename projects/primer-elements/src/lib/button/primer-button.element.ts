@@ -4,9 +4,8 @@ import {
   NgElementConstructor,
   WithProperties,
 } from '@angular/elements';
-import { createApplication } from '@angular/platform-browser';
 
-// import { provideNoopNgZone } from '../configuration/provide-noop-ng-zone';
+import { whenZonelessApplication } from '../configuration/when-zoneless-application';
 import { PrimerButtonSize } from './primer-button-size';
 import { PrimerButtonVariant } from './primer-button-variant';
 import { PrimerButtonComponent } from './primer-button.component';
@@ -23,16 +22,16 @@ declare global {
   }
 }
 
-export const primerButtonTagName = 'primer-button';
-export let PrimerButtonElement: NgElementConstructor<PrimerButtonElementProperties>;
+async function registerPrimerButtonElement(): Promise<void> {
+  const application = await whenZonelessApplication;
 
-createApplication({
-  providers: [
-    // provideNoopNgZone(),
-  ],
-}).then((application) => {
   PrimerButtonElement = createCustomElement(PrimerButtonComponent, {
     injector: application.injector,
   });
   customElements.define(primerButtonTagName, PrimerButtonElement);
-});
+}
+
+export const primerButtonTagName = 'primer-button';
+export let PrimerButtonElement: NgElementConstructor<PrimerButtonElementProperties>;
+
+registerPrimerButtonElement();
