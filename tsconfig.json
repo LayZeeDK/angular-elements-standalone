@@ -17,14 +17,8 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "paths": {
-      "primer-angular": [
-        "dist/primer-angular",
-        "projects/primer-angular/src/index.ts"
-      ],
-      "primer-elements": [
-        "dist/primer-elements",
-        "projects/primer-elements/src/index.ts"
-      ]
+      "primer-angular": ["projects/primer-angular/src/index.ts"],
+      "primer-elements": ["projects/primer-elements/src/index.ts"]
     },
     "target": "es2020",
     "module": "es2020",
