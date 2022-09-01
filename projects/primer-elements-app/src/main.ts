@@ -1,19 +1,18 @@
-// import 'zone.js';
 import { enableProdMode } from '@angular/core';
 import {
   registerPrimerButtonElement,
   primerButtonTagName,
 } from 'primer-elements';
 import { environment } from './environments/environment';
-import { whenZonelessBootstrap } from './app/configuration/when-zoneless-bootstrap';
-// import { whenZonelessApplication } from './app/configuration/when-zoneless-application';
+import { bootstrapZonelessApplication } from './app/configuration/bootstrap-zoneless-application';
+// import { createZonelessApplication } from './app/configuration/create-zoneless-application';
 
 if (environment.production) {
   enableProdMode();
 }
 
-// whenZonelessApplication;
-whenZonelessBootstrap
+// createZonelessApplication()
+bootstrapZonelessApplication()
   .then((application) => registerPrimerButtonElement(application))
   .then((PrimerButtonElement) =>
     console.log(
