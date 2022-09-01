@@ -1,11 +1,11 @@
 import { enableProdMode } from '@angular/core';
 import {
-  registerPrimerButtonElement,
   primerButtonTagName,
+  registerPrimerButtonElement,
 } from 'primer-elements';
-import { environment } from './environments/environment';
 import { bootstrapZonelessApplication } from './app/configuration/bootstrap-zoneless-application';
 // import { createZonelessApplication } from './app/configuration/create-zoneless-application';
+import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
@@ -14,10 +14,5 @@ if (environment.production) {
 // createZonelessApplication()
 bootstrapZonelessApplication()
   .then((application) => registerPrimerButtonElement(application))
-  .then((PrimerButtonElement) =>
-    console.log(
-      `Registered PrimerButtonElement as <${primerButtonTagName}></${primerButtonTagName}>`,
-      PrimerButtonElement
-    )
-  )
+  .then(() => console.log(`Registered <${primerButtonTagName}> element`))
   .catch((error) => console.error(error));

@@ -28,9 +28,11 @@ type PrimerButtonVariantClass = `btn-${Exclude<
       }
     `,
   ],
-  template: `<button class="btn" [class]="_modifierClassName">
-    <slot></slot>
-  </button>`,
+  template: `
+    <button class="btn" [class]="_modifierClassName">
+      <slot></slot>
+    </button>
+  `,
 })
 export class PrimerButtonComponent {
   get #sizeClass(): PrimerButtonSizeClass | null {

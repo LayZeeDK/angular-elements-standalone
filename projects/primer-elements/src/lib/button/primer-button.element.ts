@@ -10,28 +10,30 @@ import { PrimerButtonSize } from './primer-button-size';
 import { PrimerButtonVariant } from './primer-button-variant';
 import { PrimerButtonComponent } from './primer-button.component';
 
+declare global {
+  interface HTMLElementTagNameMap {
+    [primerButtonTagName]: PrimerButtonElement;
+  }
+}
+
+export type PrimerButtonElement = NgElement &
+  WithProperties<PrimerButtonElementProperties>;
 export interface PrimerButtonElementProperties {
   size: PrimerButtonSize;
   variant: PrimerButtonVariant;
 }
 
-declare global {
-  interface HTMLElementTagNameMap {
-    [primerButtonTagName]: NgElement &
-      WithProperties<PrimerButtonElementProperties>;
-  }
-}
-
-export function registerPrimerButtonElement(
+function createPrimerButtonElementConstructor(
   application: ApplicationRef
 ): NgElementConstructor<PrimerButtonElementProperties> {
-  const PrimerButtonElement: NgElementConstructor<PrimerButtonElementProperties> =
-    createCustomElement(PrimerButtonComponent, {
-      injector: application.injector,
-    });
-  customElements.define(primerButtonTagName, PrimerButtonElement);
+  return createCustomElement(PrimerButtonComponent, {
+    injector: application.injector,
+  });
+}
 
-  return PrimerButtonElement;
+export function registerPrimerButtonElement(application: ApplicationRef): void {
+  const PrimerButtonElement = createPrimerButtonElementConstructor(application);
+  customElements.define(primerButtonTagName, PrimerButtonElement);
 }
 
 export const primerButtonTagName = 'primer-button';
