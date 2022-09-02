@@ -1,4 +1,3 @@
-import { ApplicationRef } from '@angular/core';
 import {
   createCustomElement,
   NgElement,
@@ -6,6 +5,7 @@ import {
   WithProperties,
 } from '@angular/elements';
 
+import { whenApplication } from '../configuration/when-application';
 import { PrimerButtonSize } from './primer-button-size';
 import { PrimerButtonVariant } from './primer-button-variant';
 import { PrimerButtonComponent } from './primer-button.component';
@@ -23,16 +23,12 @@ export interface PrimerButtonElementProperties {
   variant: PrimerButtonVariant;
 }
 
-function createPrimerButtonElementConstructor(
-  application: ApplicationRef
-): NgElementConstructor<PrimerButtonElementProperties> {
-  return createCustomElement(PrimerButtonComponent, {
-    injector: application.injector,
-  });
-}
-
-export function registerPrimerButtonElement(application: ApplicationRef): void {
-  const PrimerButtonElement = createPrimerButtonElementConstructor(application);
+export async function registerPrimerButtonElement(): Promise<void> {
+  const application = await whenApplication;
+  const PrimerButtonElement: NgElementConstructor<PrimerButtonElementProperties> =
+    createCustomElement(PrimerButtonComponent, {
+      injector: application.injector,
+    });
   customElements.define(primerButtonTagName, PrimerButtonElement);
 }
 
