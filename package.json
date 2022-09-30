@@ -7,7 +7,7 @@
     "start": "ng serve",
     "build": "yarn build-primer-elements && yarn build-primer-elements-app && yarn copy-primer-elements-typings",
     "build-primer-elements": "ng build primer-elements",
-    "build-primer-elements-app": "ng build primer-elements-app",
+    "build-primer-elements-app": "ng run primer-elements-app:esbuild",
     "copy-primer-elements-typings": "copyfiles --up 2 dist/primer-elements/index.d.ts dist/primer-elements/lib/**/*.d.ts dist/primer-elements/README.md dist/primer-elements-app",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

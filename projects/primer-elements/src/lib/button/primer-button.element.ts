@@ -1,9 +1,5 @@
-import {
-  createCustomElement,
-  NgElement,
-  NgElementConstructor,
-  WithProperties,
-} from '@angular/elements';
+import type { NgElementConstructor, WithProperties } from '@angular/elements';
+import { createCustomElement, NgElement } from '@angular/elements';
 
 import { whenApplication } from '../configuration/when-application';
 import { PrimerButtonSize } from './primer-button-size';
@@ -17,7 +13,15 @@ declare global {
 }
 
 export type PrimerButtonElement = NgElement &
-  WithProperties<PrimerButtonElementProperties>;
+  WithProperties<PrimerButtonElementProperties> & {
+    getAttribute(qualifiedName: 'size'): PrimerButtonSize | null;
+    getAttribute(qualifiedName: 'variant'): PrimerButtonVariant | null;
+    getAttribute(qualifiedName: string): string | null;
+
+    setAttribute(qualifiedName: 'size', value: PrimerButtonSize): void;
+    setAttribute(qualifiedName: 'variant', value: PrimerButtonVariant): void;
+    setAttribute(qualifiedName: string, value: string): void;
+  };
 export interface PrimerButtonElementProperties {
   size: PrimerButtonSize;
   variant: PrimerButtonVariant;

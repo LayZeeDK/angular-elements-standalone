@@ -158,6 +158,56 @@
           },
           "defaultConfiguration": "production"
         },
+        "esbuild": {
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
+          "options": {
+            "outputPath": "dist/primer-elements-app",
+            "index": "projects/primer-elements-app/src/index.html",
+            "main": "projects/primer-elements-app/src/main.ts",
+            "polyfills": "",
+            "tsConfig": "projects/primer-elements-app/tsconfig.app.json",
+            "assets": ["projects/primer-elements-app/src/package.json"],
+            "styles": ["projects/primer-elements-app/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/primer-elements-app/src/environments/environment.ts",
+                  "with": "projects/primer-elements-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "none",
+              "optimization": {
+                "scripts": true,
+                "styles": true,
+                "fonts": true
+              }
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
         "serve": {
           "builder": "ngx-build-plus:dev-server",
           "configurations": {
